@@ -53,7 +53,7 @@ export default function HeroSection() {
                   }`}
                 >
                   <span className="text-base">{tab.icon}</span>
-                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="text-xs sm:text-sm">{tab.label}</span>
                 </button>
               ))}
             </div>
