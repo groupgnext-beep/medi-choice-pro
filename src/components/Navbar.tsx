@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, Phone, Menu, X, User, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const services = [
   { name: "Ambulance Booking", href: "/book/ambulance", icon: "🚑" },
