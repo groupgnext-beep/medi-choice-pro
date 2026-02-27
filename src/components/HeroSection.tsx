@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 
 const serviceTabs = [
   { id: "ambulance", label: "Ambulance", icon: "🚑", href: "/book/ambulance" },
-  { id: "physio", label: "Physio", icon: "💆", href: "/book/physiotherapy" },
-  { id: "equipment", label: "Equipment", icon: "🏥", href: "/book/equipment" },
-  { id: "nursing", label: "Nursing", icon: "👩‍⚕️", href: "/book/nursing" },
-  { id: "radiology", label: "Radiology", icon: "🔬", href: "/book/radiology" },
+  { id: "physio", label: "Physiotherapist", icon: "💆", href: "/book/physiotherapy" },
+  { id: "nursing", label: "Nursing Care", icon: "👩‍⚕️", href: "/book/nursing" },
+  { id: "equipment", label: "Medical Equipment", icon: "🏥", href: "/book/equipment" },
+  { id: "radiology", label: "Diagnostic", icon: "🔬", href: "/book/radiology" },
 ];
 
 export default function HeroSection() {
