@@ -32,8 +32,8 @@ export default function HeroSection() {
             <br />
             <span className="text-accent">Healthcare Made Simple.</span>
           </h1>
-          <p className="text-lg text-primary-foreground/70 max-w-xl mx-auto">
-            India's first multi-service healthcare marketplace. Compare verified providers, transparent pricing, and book instantly.
+          <p className="text-lg text-primary-foreground/70 max-w-2xl mx-auto">
+            India's first multi-service healthcare marketplace — Ambulance, Physiotherapist, Nursing Care, Medical Equipment & Diagnostic services. Compare verified providers, transparent pricing, and book instantly.
           </p>
         </div>
 
