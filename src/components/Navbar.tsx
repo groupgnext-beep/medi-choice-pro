@@ -27,11 +27,8 @@ export default function Navbar() {
       <div className="container-wide">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">M+</span>
-            </div>
-            <span className="font-display font-bold text-lg text-foreground">MedCompare</span>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="AmbLife.com" className="h-8" />
           </Link>
 
           {/* Nav Links */}
