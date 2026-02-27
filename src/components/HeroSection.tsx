@@ -41,12 +41,12 @@ export default function HeroSection() {
         <div className="max-w-3xl mx-auto">
           <div className="bg-card rounded-2xl shadow-floating p-1.5">
             {/* Service Tabs */}
-            <div className="flex border-b border-border">
+            <div className="flex overflow-x-auto border-b border-border scrollbar-hide">
               {serviceTabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 text-sm font-medium transition-colors rounded-t-xl ${
+                  className={`flex-shrink-0 flex items-center justify-center gap-1.5 py-3 px-3 sm:px-4 text-sm font-medium transition-colors rounded-t-xl whitespace-nowrap ${
                     activeTab === tab.id
                       ? "text-primary bg-primary-light"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
