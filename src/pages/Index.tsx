@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TrustIndicators from "@/components/TrustIndicators";
+import Testimonials from "@/components/Testimonials";
 import ServicesGrid from "@/components/ServicesGrid";
 import HowItWorks from "@/components/HowItWorks";
 import FeaturedCities from "@/components/FeaturedCities";
@@ -12,6 +13,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <TrustIndicators />
+      <Testimonials />
       <ServicesGrid />
       <HowItWorks />
       <FeaturedCities />
