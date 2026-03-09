@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Search, ArrowRight, Ambulance, Stethoscope, Wrench, HeartPulse, ScanLine } from "lucide-react";
+import { MapPin, Search, ArrowRight, Ambulance, Stethoscope, Wrench, HeartPulse, ScanLine, Clock, Users, Calendar, Package, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const serviceTabs = [
@@ -11,6 +11,41 @@ const serviceTabs = [
   { id: "radiology", label: "Diagnostics", icon: ScanLine, href: "/book/radiology" },
 ];
 
+type FormField = { label: string; placeholder: string; icon: React.ElementType; flex?: string };
+
+const serviceForms: Record<string, FormField[]> = {
+  ambulance: [
+    { label: "Pickup Location", placeholder: "Enter pickup address", icon: MapPin },
+    { label: "Drop Location", placeholder: "Enter hospital / destination", icon: MapPin },
+    { label: "Ambulance Type", placeholder: "Basic / ICU / Ventilator", icon: Ambulance },
+    { label: "When", placeholder: "Now / Schedule later", icon: Clock, flex: "0.7" },
+  ],
+  physio: [
+    { label: "Your Location", placeholder: "Enter your city or area", icon: MapPin },
+    { label: "Condition", placeholder: "Back pain, post-surgery, sports...", icon: Activity },
+    { label: "Session Type", placeholder: "Home visit / Clinic", icon: HeartPulse },
+    { label: "Preferred Date", placeholder: "Select date", icon: Calendar, flex: "0.7" },
+  ],
+  nursing: [
+    { label: "Patient Location", placeholder: "Enter patient address", icon: MapPin },
+    { label: "Care Type", placeholder: "Elder care, post-op, ICU at home...", icon: Stethoscope },
+    { label: "Duration", placeholder: "12hr / 24hr / Monthly", icon: Clock },
+    { label: "Start Date", placeholder: "Select date", icon: Calendar, flex: "0.7" },
+  ],
+  equipment: [
+    { label: "Delivery Location", placeholder: "Enter delivery address", icon: MapPin },
+    { label: "Equipment", placeholder: "Wheelchair, oxygen, hospital bed...", icon: Package },
+    { label: "Rent / Buy", placeholder: "Rental / Purchase", icon: Wrench },
+    { label: "Duration", placeholder: "Days / Weeks / Months", icon: Clock, flex: "0.7" },
+  ],
+  radiology: [
+    { label: "Your Location", placeholder: "Enter your city or area", icon: MapPin },
+    { label: "Test Required", placeholder: "X-Ray, MRI, CT Scan, Blood...", icon: ScanLine },
+    { label: "Home / Lab", placeholder: "Home collection / Visit lab", icon: Users },
+    { label: "Preferred Date", placeholder: "Select date", icon: Calendar, flex: "0.7" },
+  ],
+};
+
 const serviceCards = [
   { label: "Ambulance", icon: Ambulance, href: "/book/ambulance" },
   { label: "Physiotherapy", icon: HeartPulse, href: "/book/physiotherapy" },
@@ -20,10 +55,10 @@ const serviceCards = [
 
 export default function HeroSection() {
   const [activeTab, setActiveTab] = useState("ambulance");
+  const fields = serviceForms[activeTab];
 
   return (
     <section className="gradient-hero relative overflow-hidden pb-0">
-      {/* Subtle dot pattern */}
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -61,46 +96,31 @@ export default function HeroSection() {
           <span className="text-accent">One simple search.</span>
         </h1>
 
-        {/* Search Bar — Skyscanner style */}
+        {/* Dynamic Search Bar */}
         <div className="relative max-w-5xl">
-          <div className="flex flex-col md:flex-row bg-card rounded-2xl overflow-hidden shadow-floating border border-border">
-            {/* From / Location */}
-            <div className="flex-1 relative border-b md:border-b-0 md:border-r border-border group">
-              <label className="absolute top-3 left-4 text-xs font-semibold text-primary">From</label>
-              <div className="flex items-center pt-7 pb-3 px-4">
-                <MapPin className="w-4 h-4 text-muted-foreground mr-2 flex-shrink-0" />
-                <input
-                  type="text"
-                  placeholder="Enter your city or location"
-                  className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-                />
-              </div>
-            </div>
-
-            {/* Service */}
-            <div className="flex-1 relative border-b md:border-b-0 md:border-r border-border group">
-              <label className="absolute top-3 left-4 text-xs font-semibold text-primary">Service</label>
-              <div className="flex items-center pt-7 pb-3 px-4">
-                <Search className="w-4 h-4 text-muted-foreground mr-2 flex-shrink-0" />
-                <input
-                  type="text"
-                  placeholder="What service do you need?"
-                  className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-                />
-              </div>
-            </div>
-
-            {/* Date */}
-            <div className="flex-[0.7] relative border-b md:border-b-0 md:border-r border-border group">
-              <label className="absolute top-3 left-4 text-xs font-semibold text-primary">When</label>
-              <div className="flex items-center pt-7 pb-3 px-4">
-                <input
-                  type="text"
-                  placeholder="Select date"
-                  className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-                />
-              </div>
-            </div>
+          <div className="flex flex-col md:flex-row bg-card rounded-2xl overflow-hidden shadow-floating border border-border" key={activeTab}>
+            {fields.map((field, i) => {
+              const Icon = field.icon;
+              return (
+                <div
+                  key={i}
+                  className={`relative border-b md:border-b-0 md:border-r border-border last:border-r-0 group ${
+                    field.flex ? `md:flex-[${field.flex}]` : "flex-1"
+                  }`}
+                  style={field.flex ? { flex: field.flex } : undefined}
+                >
+                  <label className="absolute top-3 left-4 text-xs font-semibold text-primary">{field.label}</label>
+                  <div className="flex items-center pt-7 pb-3 px-4">
+                    <Icon className="w-4 h-4 text-muted-foreground mr-2 flex-shrink-0" />
+                    <input
+                      type="text"
+                      placeholder={field.placeholder}
+                      className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                    />
+                  </div>
+                </div>
+              );
+            })}
 
             {/* Search Button */}
             <Link
@@ -118,7 +138,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom Service Cards — Skyscanner style */}
+      {/* Bottom Service Cards */}
       <div className="container-wide relative pb-0 -mb-10 z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
           {serviceCards.map((card) => {
@@ -132,9 +152,7 @@ export default function HeroSection() {
                 <div className="w-10 h-10 rounded-xl bg-primary-foreground/10 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
                   <Icon className="w-5 h-5 text-primary-foreground" />
                 </div>
-                <span className="text-sm font-semibold text-primary-foreground">
-                  {card.label}
-                </span>
+                <span className="text-sm font-semibold text-primary-foreground">{card.label}</span>
               </Link>
             );
           })}
